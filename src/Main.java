@@ -12,32 +12,57 @@ import java.net.URL;
  *
  */
 public class Main {
+	private static int countSyllables = 0;
+	private static int countWord = 0;
+
 	/**
 	 * Main application for run Word Counter.
 	 * 
-	 * @param args not used
-	 * @throws IOException when Input file is invalid
+	 * @param args
+	 *            not used
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		final String DICT_URL = "https://se.cpe.ku.ac.th/dictionary.txt";
-		URL url = new URL(DICT_URL);
-		InputStream input = url.openStream();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-		int count = 0;
-		WordCounter wordCounter = new WordCounter();
-		while(true) {
-			String word = reader.readLine();
-			if(word == null) break;
-			count += wordCounter.countSyllables(word);
-		}
-		System.out.println("Counted "+count+" syllables");
+		readInputFile(DICT_URL);
+		System.out.println("Reading words from " + DICT_URL);
+		long startTime = System.nanoTime();
+		System.out.println("Counted " + countSyllables + " syllables in " + countWord + " words");
+		double elapsedTime = (double) ((System.nanoTime() - startTime) * 1.0E-9);
+		System.out.printf("Elapsed time: " + "%.8f" + " sec", elapsedTime);
 	}
-	
-	public BufferedReader readInputFile(String URL) throws IOException{
-		final String DICT_URL = "https://se.cpe.ku.ac.th/dictionary.txt";
-		URL url = new URL(DICT_URL);
-		InputStream input = url.openStream();
+
+	/**
+	 * Read file from URL and also count syllables and word.
+	 * 
+	 * @param URL
+	 *            directory of file
+	 */
+	public static void readInputFile(String URL) {
+		URL url;
+		try {
+			url = new URL(URL);
+		} catch (MalformedURLException e) {
+			throw new RuntimeException(e.getMessage());
+		}
+		InputStream input;
+		try {
+			input = url.openStream();
+		} catch (IOException e) {
+			throw new RuntimeException(e.getMessage());
+		}
 		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-		return reader;
+		WordCounter wordCounter = new WordCounter();
+		while (true) {
+			String word;
+			try {
+				word = reader.readLine();
+			} catch (IOException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+			countWord++;
+			if (word == null)
+				break;
+			countSyllables += wordCounter.countSyllables(word);
+		}
 	}
 }

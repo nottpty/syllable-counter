@@ -1,4 +1,5 @@
 /**
+ * Count Syllables from a word.
  * 
  * @author Patinya Yongyai
  *
@@ -15,16 +16,17 @@ public class WordCounter {
 	private int syllableCount = 0;
 
 	/**
-	 * 
+	 * Constructor of word count that has default of state is STATE state.
 	 */
 	public WordCounter() {
 		this.setState(START);
 	}
 
 	/**
+	 * Count syllables of a word.
 	 * 
-	 * @param word
-	 * @return
+	 * @param word a word that want to check a syllable
+	 * @return amount of a syllables
 	 */
 	public int countSyllables(String word) {
 		char c = ' ';
@@ -45,9 +47,7 @@ public class WordCounter {
 	}
 
 	/**
-	 * 
-	 * @author Not-PC
-	 *
+	 * Single Vowel state
 	 */
 	class SingleVowelState extends State {
 
@@ -69,9 +69,7 @@ public class WordCounter {
 	}
 
 	/**
-	 * 
-	 * @author Not-PC
-	 *
+	 * Start state
 	 */
 	public class StartState extends State {
 
@@ -95,9 +93,7 @@ public class WordCounter {
 	}
 
 	/**
-	 * 
-	 * @author Not-PC
-	 *
+	 * Consonant State
 	 */
 	class ConsonantState extends State {
 
@@ -125,9 +121,7 @@ public class WordCounter {
 	}
 
 	/**
-	 * 
-	 * @author Not-PC
-	 *
+	 * Hyphen state
 	 */
 	class HyphenState extends State {
 
@@ -152,9 +146,7 @@ public class WordCounter {
 	}
 
 	/**
-	 * 
-	 * @author Not-PC
-	 *
+	 * Multi vowel state
 	 */
 	class MultivowelState extends State {
 
@@ -169,9 +161,7 @@ public class WordCounter {
 	}
 
 	/**
-	 * 
-	 * @author Not-PC
-	 *
+	 * Non-word state
 	 */
 	class NonwordState extends State {
 
@@ -184,9 +174,7 @@ public class WordCounter {
 	}
 
 	/**
-	 * 
-	 * @author Not-PC
-	 *
+	 * E state
 	 */
 	class EState extends State {
 
@@ -209,8 +197,8 @@ public class WordCounter {
 
 	/**
 	 * 
-	 * @param c
-	 * @return
+	 * @param c is a character
+	 * @return true if c is a letter
 	 */
 	private boolean isLetter(char c) {
 		return Character.isLetter(c);
@@ -218,8 +206,8 @@ public class WordCounter {
 
 	/**
 	 * 
-	 * @param c
-	 * @return
+	 * @param c is a character
+	 * @return true if c is white space
 	 */
 	private boolean isWhitespace(char c) {
 		return Character.isWhitespace(c);
@@ -227,8 +215,8 @@ public class WordCounter {
 
 	/**
 	 * 
-	 * @param c
-	 * @return
+	 * @param c is a character
+	 * @return true if c is a,e,i,o,u or y
 	 */
 	private boolean isVowelOrY(char c) {
 		String str = c + "";
