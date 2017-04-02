@@ -51,7 +51,7 @@ public class Main {
 			throw new RuntimeException(e.getMessage());
 		}
 		BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-		WordCounter wordCounter = new WordCounter();
+		OOSyllableCounter wordCounter = new OOSyllableCounter();
 		while (true) {
 			String word;
 			try {

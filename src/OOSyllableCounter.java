@@ -4,7 +4,7 @@
  * @author Patinya Yongyai
  *
  */
-public class WordCounter {
+public class OOSyllableCounter {
 	private final State START = new StartState();
 	private final State SINGLEVOWEL = new SingleVowelState();
 	private final State CONSONANT = new ConsonantState();
@@ -18,7 +18,7 @@ public class WordCounter {
 	/**
 	 * Constructor of word count that has default of state is STATE state.
 	 */
-	public WordCounter() {
+	public OOSyllableCounter() {
 		this.setState(START);
 	}
 

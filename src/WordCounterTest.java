@@ -48,7 +48,7 @@ public class WordCounterTest {
 	
 	public static void main(String[] args) throws IOException {
 		Map<String,Integer> words = loadWords( URLNAME );
-		WordCounter counter = new WordCounter();
+		OOSyllableCounter counter = new OOSyllableCounter();
 		int correct = 0;
 		int incorrect = 0;
 		for( String word : words.keySet() ) {
