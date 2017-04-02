@@ -33,6 +33,7 @@ public class OOSyllableCounter {
 		syllableCount = 0;
 		for (int i = 0; i < word.length(); i++) {
 			c = word.charAt(i);
+			if(c == '\'') continue;
 			state.handleChar(c);
 		}
 		if (state == E && syllableCount > 1)
